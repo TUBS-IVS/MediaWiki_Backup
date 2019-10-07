@@ -242,8 +242,7 @@ function export_filesystem {
 function combine_archives {
     FULL_ARCHIVE=$BACKUP_PREFIX"-mediawiki_backup.tar.gz"
     echo "Consolidating backups into $FULL_ARCHIVE"
-    # The --transform option is responsible for keeping the basename only
-    tar -zcf "$FULL_ARCHIVE" $RUNNING_FILES --remove-files --transform='s|.*/||'
+    tar -zcf "$FULL_ARCHIVE" -C $BACKUP_DIR $(basename -a $RUNNING_FILES) --remove-files
 }
 
 
